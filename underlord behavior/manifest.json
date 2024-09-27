@@ -1,0 +1,30 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "bosses",
+		"description": "bosses Behavior Pack",
+		"uuid": "0a0f734a-b07a-0a88-dc96-b1cf313d2221",
+		"version": [1, 0, 0],
+		"min_engine_version": [1, 16, 0]
+	},
+	"metadata": {
+		"authors": ["Leodumrucker596"],
+		"generated_with": {
+			"blockbench_entity_wizard": ["1.5.1"]
+		}
+	},
+	"modules": [
+		{
+			"description": "Behavior",
+			"version": [1, 0, 0],
+			"uuid": "73b6df9f-9bb1-d7a5-c5d4-d1075bbdadbc",
+			"type": "data"
+		}
+	],
+	"dependencies": [
+		{
+			"uuid": "d87e3c93-397f-ec35-4fbc-124cccd516e5",
+			"version": [1, 0, 0]
+		}
+	]
+}

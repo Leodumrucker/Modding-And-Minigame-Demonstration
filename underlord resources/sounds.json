@@ -1,0 +1,20 @@
+{
+	"entity_sounds": {
+		"entities": {
+			"dungeoneer:underlord": {
+				"events": {
+					"ambient": "underlord.laugh",
+					"death": "underlord.death",
+					"hurt": "underlord.hurt",
+					"mad": {
+						"pitch": [1.44, 2.16],
+						"sound": "mob.zombiepig.zpigangry",
+						"volume": 2
+					}
+				},
+				"pitch": [0.8, 1.2],
+				"volume": 1
+			}
+		}
+	}
+}

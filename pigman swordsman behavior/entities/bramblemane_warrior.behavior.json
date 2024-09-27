@@ -1,0 +1,243 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "dungeoneer:bramblemane_warrior",
+			"is_spawnable": true,
+			"is_summonable": true,
+			"is_experimental": false
+		},
+		"component_groups": {
+			"ranged": {
+				"minecraft:behavior.ranged_attack": {
+					"priority": 5,
+					"attack_radius": 45,
+					"charge_shoot_trigger": 0.4,
+					"charge_charged_trigger": 0.2
+				},
+				"minecraft:shooter": {
+					"def": "minecraft:arrow"
+				},
+				"minecraft:equipment": {
+					"table": "loot_tables/equipment/pigman_warrior_ranged_gear.json"
+				},
+				"minecraft:damage_sensor": {
+					"triggers": [
+						
+						{
+						"on_damage": {
+							"filters": {
+								"any_of": [
+									{"test": "is_family", "subject": "other", "operator": "!=", "value": "pigman"}
+								]
+							},
+							"event": "dungeoneer:melee"
+						}
+						}
+					]
+				}
+			},
+			"melee": {
+				"minecraft:attack": {
+					"damage": 2
+				},
+				"minecraft:timer": {
+					"looping": false,
+					"time": 20,
+					"time_down_event": {
+						"event": "dungeoneer:ranged"
+					}
+				},
+				"minecraft:equipment": {
+					"table": "loot_tables/equipment/pigman_warrior_melee_gear.json"
+				},
+				"minecraft:behavior.melee_attack": {
+					"priority": 15,
+					"speed_multiplier": 2
+				}
+			}
+		},
+		"components": {
+			"minecraft:spawn_entity": {
+				"entities": [
+					{
+					"min_wait_time": 1,
+					"max_wait_time": 1,
+					"single_use": true,
+					"spawn_entity": "dungeoneer:pigman_swordsman",
+					"num_to_spawn": 3
+					},
+					{
+						"min_wait_time": 1,
+						"max_wait_time": 1,
+						"single_use": true,
+						"spawn_entity": "dungeoneer:pigman_mage",
+						"num_to_spawn": 1
+						}
+				]
+			},
+			"minecraft:breathable": {
+				"total_supply": 15,
+				"suffocate_time": 0,
+				"breathes_water": false
+			},
+			
+			
+			"minecraft:collision_box": {
+				"width": 0.6,
+				"height": 1.9
+			},
+			"minecraft:follow_range":{
+				"value":50
+			},
+			"minecraft:behavior.avoid_mob_type": {
+				"priority": 600,
+				"entity_types": [
+					{
+					"filters": {
+						"test": "is_family",
+						"subject": "other",
+						"value": "bomb"
+					},
+					"max_dist": 30,
+					"walk_speed_multiplier": 1.2,
+					"sprint_speed_multiplier": 1.5
+					}
+				]
+			},
+			"minecraft:behavior.nearest_attackable_target": {
+				"priority": 26,
+				"entity_types": [
+					{
+						"filters": {
+							"test": "is_family",
+							"subject": "other",
+							"value": "player"
+						},
+						"max_dist": 100
+					},
+					{
+						"filters": {
+							"test": "is_family",
+							"subject": "other",
+							"value": "villager"
+						},
+						"max_dist": 100
+					},
+					{
+						"filters": {
+							"test": "is_family",
+							"subject": "other",
+							"value": "warden"
+						},
+						"max_dist": 100
+					},
+					{
+						"filters": {
+							"test": "is_family",
+							"subject": "other",
+							"value": "irongolem"
+						},
+						"max_dist": 100
+					}
+				],
+				"must_see": true
+			},
+			"minecraft:nameable": {},
+			"minecraft:navigation.walk": {
+				"is_amphibious": true,
+				"can_pass_doors": true,
+				"can_open_doors": true,
+				"avoid_water": true,
+				"avoid_portals": false
+			},
+			"minecraft:movement.basic": {},
+			"minecraft:jump.static": {},
+			"minecraft:can_climb": {},
+			
+			"minecraft:type_family": {
+				"family": ["bramblemane_warrior", "pigman", "monster", "mob"]
+			},
+			"minecraft:loot": {
+				"table": "loot_tables/entities/pigman_swordsman.json"
+			},
+			
+			"minecraft:health": {
+				"value": 52,
+				"max": 52
+			},
+			"minecraft:movement": {
+				"value": 0.24
+			},
+			
+			
+			"minecraft:behavior.hurt_by_target": {
+				"priority": 1,
+				"entity_types": {
+					"filters": {
+						"test": "is_family",
+						"subject": "other",
+						"operator": "!=",
+						"value": "pigman"
+					},
+					"max_dist": 64
+				}
+			},
+			
+			"minecraft:behavior.equip_item": {
+				"priority": 3
+			},
+			"minecraft:timer": {
+              "looping": false,
+              "time": 0.1,
+              "time_down_event": {
+                "event": "dungeoneer:ranged"
+              }
+            },
+			
+			"minecraft:damage_sensor": {
+					"triggers": [
+						
+						{
+						"on_damage": {
+							"filters": {
+								"any_of": [
+									{"test": "is_family", "subject": "other", "value": "lightning"}
+								]
+							},
+							"event": "dungeoneer:ranged"
+						}
+						}
+					]
+				},
+			
+			
+			
+			
+			"minecraft:physics": {},
+			"minecraft:pushable": {
+				"is_pushable": true,
+				"is_pushable_by_piston": true
+			},
+			"minecraft:conditional_bandwidth_optimization": {}
+		},
+		"events": {
+			"dungeoneer:ranged": {
+				"add": {
+					"component_groups": ["ranged"]
+				},
+				"remove": {
+					"component_groups": ["melee"]
+				}
+			},
+			"dungeoneer:melee": {
+				"add": {
+					"component_groups": ["melee"]
+				},
+				"remove": {
+					"component_groups": ["ranged"]
+				}
+			}
+		}
+	}
+}

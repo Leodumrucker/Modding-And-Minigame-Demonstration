@@ -1,0 +1,24 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "pigman swordsman",
+		"description": "pigman swordsman Resource Pack",
+		"uuid": "f4332dee-0209-0e44-3e30-7dcdf4263e27",
+		"version": [1, 0, 0],
+		"min_engine_version": [1, 16, 0]
+	},
+	"metadata": {
+		"authors": ["Leodumrucker596"],
+		"generated_with": {
+			"blockbench_entity_wizard": ["1.5.0"]
+		}
+	},
+	"modules": [
+		{
+			"description": "pigman swordsman",
+			"type": "resources",
+			"uuid": "fd3bb914-19c5-5d5a-9809-bc16956155e5",
+			"version": [1, 0, 0]
+		}
+	]
+}

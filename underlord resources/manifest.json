@@ -1,0 +1,24 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "bosses",
+		"description": "bosses Resource Pack",
+		"uuid": "d87e3c93-397f-ec35-4fbc-124cccd516e5",
+		"version": [1, 0, 0],
+		"min_engine_version": [1, 16, 0]
+	},
+	"metadata": {
+		"authors": ["Leodumrucker596"],
+		"generated_with": {
+			"blockbench_entity_wizard": ["1.5.1"]
+		}
+	},
+	"modules": [
+		{
+			"description": "bosses",
+			"type": "resources",
+			"uuid": "c36d2e96-9253-daed-1cbe-fc07135e318c",
+			"version": [1, 0, 0]
+		}
+	]
+}

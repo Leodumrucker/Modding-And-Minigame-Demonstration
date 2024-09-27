@@ -1,0 +1,327 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "dungeoneer:underlord",
+			"is_spawnable": false,
+			"is_summonable": true,
+			"is_experimental": false
+		},
+		"component_groups": {
+			"dungeoneer:sworder": {
+				"minecraft:spawn_entity": {
+					"entities": {
+						"min_wait_time": 0.5,
+						"max_wait_time": 3.0,
+						"single_use": true,
+						"spawn_entity": "minecraft:skeleton",
+						"num_to_spawn": 1
+					}
+				},
+				"minecraft:knockback_resistance": {
+					"value":1
+				},
+				"minecraft:spell_effects": {
+					"add_effects": [
+						{
+							"effect": "resistance",
+							"duration": 3,
+							"amplifier": 3,
+							"visible": true,
+							"display_on_screen_animation": true
+						},
+						{
+							"effect": "regeneration",
+							"duration": 1000,
+							"amplifier": 1,
+							"visible": false,
+							"display_on_screen_animation": true
+						}
+					],
+					"remove_effects": ["poison", "wither"]
+				},
+				"minecraft:shooter": {
+					"def": "dungeoneer:fire_spell"
+				},
+				"movement": {
+					"value": 0.15
+				},
+				"minecraft:physics": {
+					"collisions":true,
+					"gravity":true
+				},
+				"minecraft:timer":{
+					"looping": false,
+					"randomInterval":true,
+					"time": [1.0, 10.0],
+					"time_down_event": {
+						"event":"dungeoneer:hit"
+					}
+				},
+				"minecraft:behavior.ranged_attack": {
+					"priority": 35,
+					"attack_radius": 30,
+					"charge_shoot_trigger": 0.2,
+					"charge_charged_trigger": 0.1
+				}
+			},
+			"dungeoneer:whack": {
+				"minecraft:spawn_entity": {
+					"entities": {
+						"min_wait_time": 0,
+						"max_wait_time": 1.0,
+						"single_use": true,
+						"spawn_entity": "dungeoneer:black_ghast",
+						"num_to_spawn": 1
+					}
+				},
+				
+				"minecraft:behavior.melee_attack": {
+					"priority": 31,
+					"damage_reach": 10
+				
+				
+				},
+				"minecraft:movement": {
+					"value": 0.4
+				},
+				"minecraft:physics": {
+					"collisions":true,
+					"gravity":true
+				},
+				"minecraft:timer":{
+					"looping": false,
+					"randomInterval":true,
+					"time": [10.0, 20.0],
+					"time_down_event": {
+						"event":"dungeoneer:calm"
+					}
+				},
+				"minecraft:attack": {
+					"damage":15
+				}
+			}
+		
+			
+		},
+		"components": {
+			"minecraft:breathable": {
+				"total_supply": 15,
+				"suffocate_time": 0,
+				"breathes_water": false
+			},
+			"minecraft:spawn_entity": {
+				"entities": {
+					"min_wait_time": 0,
+					"max_wait_time": 1.0,
+					"single_use": true,
+					"spawn_entity": "minecraft:pigman_wizard",
+					"num_to_spawn": 3
+				}
+			},
+			"minecraft:collision_box": {
+				"width": 0.6,
+				"height": 1.9
+			},
+			"minecraft:scale": {
+				"value":1.1
+			},
+			"minecraft:nameable": {},
+			"minecraft:navigation.walk": {
+				"is_amphibious": true,
+				"can_pass_doors": true,
+				"can_open_doors": true,
+				"avoid_water": true,
+				"avoid_portals": false
+			},
+			"minecraft:movement.basic": {},
+			"minecraft:jump.static": {},
+			"minecraft:can_climb": {},
+			"minecraft:fire_immune": {},
+			"minecraft:type_family": {
+				"family": ["underlord", "pigman", "monster", "boss", "mob"]
+			},
+			"minecraft:damage_sensor": {
+				"triggers": {
+					"on_damage": {
+					"filters": {
+						"all_of": [
+							
+							{
+								"test": "has_damage",
+								"operator": "!=",
+								"value": "fall"
+							},
+							{
+								"test": "has_damage",
+								"operator": "!=",
+								"value": "fire"
+							},
+							{
+								"test": "has_damage",
+								"operator": "!=",
+								"value": "drowning"
+							}
+						]
+						
+					},
+					"event": "dungeoneer:sworder",
+					"target": "self"
+					}
+				}
+			},
+			"minecraft:loot": {
+				"table": "loot_tables/entities/underlord.json"
+			},
+			"minecraft:health": {
+				"value": 900,
+				"max": 900
+			},
+			
+			"minecraft:movement": {
+				"value": 0.19
+			},
+			"minecraft:attack": {
+				"damage": 15
+			},
+			"minecraft:behavior.nearest_attackable_target": {
+				"priority": 22,
+				"reselect_targets": true,
+				"must_see": false,
+				"entity_types": [
+					{
+						"filters": {
+							"test": "is_family",
+							"subject": "other",
+							"value": "player"
+						},
+						"max_dist": 20
+					},
+					{
+						"filters": {
+							"test": "is_family",
+							"subject": "other",
+							"value": "villager"
+						},
+						"max_dist": 20
+					},
+					{
+						"filters": {
+							"test": "is_family",
+							"subject": "other",
+							"value": "irongolem"
+						},
+						"max_dist": 20
+					}
+				]
+			},
+			"minecraft:behavior.summon_entity": {
+				"priority": 24,
+				"summon_choices": [
+					{
+						"min_activation_range": 5,
+						"max_activation_range": 40,
+						"cooldown_time": 15,
+						"weight": 5,
+						"cast_duration": 2,
+						"particle_color": "#3CE300",
+						"start_sound_event": "cast.spell",
+						"sequence": [
+							
+							{
+								"shape": "circle",
+								"target": "self",
+								"base_delay": 0.15,
+								"delay_per_summon": 0,
+								"num_entities_spawned": 10,
+								"entity_type": "minecraft:zombie",
+								"size": 4,
+								"entity_lifespan": -1
+							}
+						]
+					},
+					{
+						"min_activation_range": 0,
+						"max_activation_range":7,
+						"weight": 4,
+						"cooldown_time": 30,
+						"cast_duration": 1,
+						"particle_color": "#3E4F02",
+						"start_sound_event": "cast.spell",
+						"sequence": [
+							{
+								"shape": "circle",
+								"target": "self",
+								"base_delay": 1,
+								"delay_per_summon": 0.05,
+								"num_entities_spawned": 2,
+								"entity_type": "dungeoneer:ghoul",
+								"size": 2,
+								"entity_lifespan": -1
+							}
+						]
+					},
+					{
+						"weight": 3,
+						"cooldown_time": 20,
+						"cast_duration": 3,
+						"particle_color": "#000000",
+						"sequence": [
+							{
+								"shape": "circle",
+								"target": "self",
+								"base_delay": 5,
+								"num_entities_spawned": 5,
+								"entity_type": "minecraft:wither_skeleton",
+								"summon_cap": 8,
+								"summon_cap_radius": 16,
+								"size": 3,
+								"sound_event": "prepare.summon"
+							}
+						]
+					}
+				]
+			},
+			"minecraft:behavior.hurt_by_target": {
+				"priority": 1
+			},
+			
+			"minecraft:behavior.look_at_player": {
+				"priority": 0,
+				"look_distance": 6,
+				"probability": 0.02
+			},
+			"minecraft:boss":{
+				"hud_range": 40,
+				"name": "underlord"
+			},
+			"minecraft:physics": {},
+			"minecraft:pushable": {
+				"is_pushable": true,
+				"is_pushable_by_piston": true
+			},
+			"minecraft:conditional_bandwidth_optimization": {}
+		},
+		"events": {
+			"dungeoneer:sworder": {
+				"add": {
+					"component_groups": ["dungeoneer:sworder"]
+				}
+			},
+			"dungeoneer:hit": {
+				"add": {
+					"component_groups": ["dungeoneer:whack"]
+				},
+				"remove": {
+					"component_groups": ["dungeoneer:sworder"]
+				}
+			},
+			"dungeoneer:calm": {
+				
+				"remove": {
+					"component_groups": ["dungeoneer:sworder", "dungeoneer:sworder"]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,30 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "pigman swordsman",
+		"description": "pigman swordsman Behavior Pack",
+		"uuid": "0fb1bb2e-6ddf-3dfe-52e8-7feeee94b52f",
+		"version": [1, 0, 0],
+		"min_engine_version": [1, 16, 0]
+	},
+	"metadata": {
+		"authors": ["Leodumrucker596"],
+		"generated_with": {
+			"blockbench_entity_wizard": ["1.5.0"]
+		}
+	},
+	"modules": [
+		{
+			"description": "Behavior",
+			"version": [1, 0, 0],
+			"uuid": "4996ff79-2e9b-ad6e-ba4c-54f9389396fd",
+			"type": "data"
+		}
+	],
+	"dependencies": [
+		{
+			"uuid": "f4332dee-0209-0e44-3e30-7dcdf4263e27",
+			"version": [1, 0, 0]
+		}
+	]
+}

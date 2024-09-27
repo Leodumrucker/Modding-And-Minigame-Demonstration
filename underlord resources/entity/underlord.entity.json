@@ -1,0 +1,33 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "dungeoneer:underlord",
+			"render_controllers": [
+                "controller.render.default"
+            ],
+            "geometry": {
+                "default": "geometry.underlord"
+            },
+            "textures": {
+                "default": "textures/entity/underlord"
+            },
+            "materials": {
+                "default": "entity"
+            },
+            "animations": {
+                "move": "animation.underlord.move",
+                "idle":"animation.underlord.idle",
+                "holding": "animation.humanoid.holding"
+            },
+            
+            "scripts": {
+                "animate":[
+                    "holding",
+                   { "idle" :"!query.is_moving"},
+                   { "move" :"query.is_moving"}
+                ]
+            }
+		}
+	}
+}

@@ -1,0 +1,359 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "minewars:trueherobrine",
+			"is_spawnable": true,
+			"is_summonable": true,
+			"is_experimental": false
+		},
+		"component_groups": {
+			"minewars:buff": {
+				"minecraft:raid_trigger":{
+					"triggered_event": "minecraft:prepare_for_war"
+				},
+				"minecraft:mob_effect":{
+					"entity_filter": {"test": "is_family",
+					"subject":"other",
+					"value": "monster"},
+					"effect_range": 50,
+					"effect_time": 100000,
+					"mob_effect": "instant_health"
+				}
+				
+			},
+			"minewars:buff2": {
+				"minecraft:mob_effect":{
+					"entity_filter": {"test": "is_family",
+					"subject":"other",
+					"value": "monster"},
+					"effect_range": 50,
+					"effect_time": 100000,
+					"mob_effect": "strength"
+				},
+				"minecraft:area_attack":{
+					"damage_range": 50,
+					"damage_per_tick": 10,
+					"cause": "contact",
+					"entity_filter": {
+						 "test": "is_family", "subject": "other", "value": "irongolem"
+					}
+				}
+			}
+		},
+		"components": {
+			"minecraft:is_hidden_when_invisible": {
+			},
+			
+			"minecraft:navigation.walk": {
+				"is_amphibious": true,
+				"can_path_over_water": true,
+				"can_pass_doors": true,
+				"can_open_doors": true,
+				"can_walk": true,
+				"avoid_water": true
+			
+			},
+			"minecraft:annotation.open_door": {
+
+			},
+			"minecraft:behavior.nearest_attackable_target": {
+                "priority": 25,
+                "must_see": false,
+                "reselect_targets": true,
+                "within_radius": 1000.0,
+                "entity_types": [
+                    {
+                        "filters": {
+                            "test": "is_family",
+                            "subject":"other",
+                            "value": "player"
+                        },
+                        "max_dist": 10000
+                    },
+                    {
+                        "filters": {
+                            "test": "is_family",
+                            "subject":"other",
+                            "value": "irongolem"
+                        },
+                        "max_dist": 10000
+                    },
+					{
+                        "filters": {
+                            "test": "is_family",
+                            "subject":"other",
+                            "value": "warden"
+                        },
+                        "max_dist": 1000
+                    },
+					{
+                        "filters": {
+                            "test": "is_family",
+                            "subject":"other",
+                            "value": "robot"
+                        },
+                        "max_dist": 500
+                    }
+                ]
+                
+            },
+            
+			"minecraft:experience_reward": {
+				"on_death": 20000000
+			},
+			
+			"minecraft:conditional_bandwidth_optimization": {},
+			
+			"minecraft:type_family": {
+				"family": ["herobrine", "zombie", "monster", "mob"]
+			},
+			
+			"minecraft:breathable": {
+				"total_supply": 1500000,
+				"suffocate_time": 100000
+			},
+			"minecraft:collision_box": {
+				"width": 0.6,
+				"height": 1.8
+			},
+			"minecraft:scale":{
+				"value":3
+			},
+			"minecraft:health": {
+				"value": 100000,
+				"max": 200000
+			},
+			"minecraft:hurt_on_condition": {
+				"damage_conditions": [
+					{
+						"filters": {
+							"test": "in_lava",
+							"subject": "self",
+							"operator": "==",
+							"value": true
+						},
+						"cause": "lava",
+						"damage_per_tick": 0
+					}
+				]
+			},
+			"minecraft:attack": {
+				"damage": 5000
+			},
+			"minecraft:movement": {
+				"value": 0.5
+			},
+			
+			  "minecraft:persistent": {
+			},
+			"minecraft:movement.basic": {},
+			"minecraft:jump.static": {},
+			"minecraft:follow_range": {
+				"value": 100000
+			},
+			
+			  
+			  "minecraft:behavior.open_door": {
+				"priority": 6,
+				"close_door_after": false
+			  },
+			  
+			  
+			
+			"minecraft:loot": {
+				"table": "loot_tables/entities/herobrine.json"
+			},
+			
+			
+			"minecraft:behavior.melee_attack": {
+				"priority": 1
+			},
+			"minecraft:lookat":{
+				"allow_invulnerable": false,
+				"filters": {}  ,
+				"look_cooldown": [0, 0],
+				"look_event": "minewars:buffhelp" ,
+				"search_radius": 100,
+				"set_target": true
+			},
+			
+			"minecraft:behavior.look_at_player": {
+				"priority": 10,
+				"look_distance": 250,
+				"probability": 0.5
+			},
+			"minecraft:behavior.hurt_by_target": {
+				"priority": 1
+			},
+			
+			"minecraft:physics": {},
+			"minecraft:pushable": {
+				"is_pushable": false,
+				"is_pushable_by_piston": false
+			},
+			"minecraft:behavior.summon_entity":{
+				"priority": 500,
+				"summon_choices": [
+					{
+						"min_activation_range": 1.0,
+						"max_activation_range": 1000.0,
+						"cooldown_time": 0.0,
+						"weight": 50,
+						"cast_duration": 0.1,
+						"particle_color": "#dddddd", 
+						"start_sound_event": "cast.spell",
+						"sequence": [
+						  {
+							"shape": "line",
+							"target": "self",
+							"base_delay": 1.0,
+							"delay_per_summon": 0.0,
+							"num_entities_spawned": 2,
+							"entity_type": "minewars:herobrine",
+							"size": 5,
+							"entity_lifespan": -1.0,
+							"sound_event": "prepare.attack"
+						  },
+						  
+						  {
+							"shape": "circle",
+							"target": "target",
+							"base_delay": 0.15,
+							"delay_per_summon": 0.0,
+							"num_entities_spawned": 10,
+							"entity_type": "minewars:heroblaster",
+							"size": 5,
+							"entity_lifespan": -1.0
+						  },
+						  {
+							"shape": "circle",
+							"target": "target",
+							"base_delay": 0.15,
+							"delay_per_summon": 0.0,
+							"num_entities_spawned": 25,
+							"entity_type": "minewars:briney",
+							"size": 10,
+							"entity_lifespan": -1.0
+						  }
+						]
+					},
+					{
+
+						"min_activation_range": 1.0,
+						"max_activation_range": 500.0,
+						"cooldown_time": 1.0,
+						"weight": 150,
+						"cast_duration": 0.0,
+						"particle_color": "#800080", 
+						"start_sound_event": "cast.spell",
+						"sequence": [
+							{
+								"shape": "line",
+								"target": "self",
+								"base_delay": 1.0,
+								"delay_per_summon": 0.0,
+								"num_entities_spawned": 2,
+								"entity_type": "minewars:herobrine",
+								"size": 5,
+								"entity_lifespan": -1.0,
+								"sound_event": "prepare.attack"
+							  },
+						  {
+							"shape": "line",
+							"target": "self",
+							"base_delay": 1.0,
+							"delay_per_summon": 0.0,
+							"num_entities_spawned": 30,
+							"entity_type": "minewars:briney",
+							"size": 1,
+							"entity_lifespan": -1.0,
+							"sound_event": "prepare.attack"
+						  },
+						  
+						  
+						  {
+							"shape": "circle",
+							"target": "target",
+							"base_delay": 0.15,
+							"delay_per_summon": 0.0,
+							"num_entities_spawned": 5,
+							"entity_type": "minewars:heroblaster",
+							"size": 10,
+							"entity_lifespan": -1.0
+						  }
+						]
+					}
+					]
+			},
+			"minecraft:is_illager_captain":{
+			},
+			
+			
+			
+			"minecraft:fire_immune": {
+			},
+			"minecraft:boss":{
+				"hud_range": 10000,
+				"name": "TRUE HEROBRINE",
+				"should_darken_sky": true
+			},
+			"minecraft:break_blocks":{
+				"breakable_blocks": [
+					"grass",
+					"planks",
+					"snow",
+					"cobblestone",
+					"logs",
+					"grass_path",
+					"stone",
+					"leaves",
+					"gravel",
+					"bedrock",
+					"birch_log",
+					"leaves2",
+					"coal_ore",
+					"copper_ore",
+					"deepslate",
+					"reinforced_deepslate",
+					"iron_ore",
+					"mossy_cobblestone",
+					"glass",
+					"glass_pane",
+					"podzol",
+					"netherite_block",
+					"diamond_block",
+					"sand",
+					"clay_block",
+					"water",
+					"obsidian",
+					"quartz_block",
+					"oak_fence"
+				]
+			},
+			
+			"minecraft:raid_trigger":{
+				"triggered_event": "minecraft:prepare_for_war"
+			},
+			"minecraft:trail": {
+				"block_type": "minecraft:fire"
+				
+			  },
+			"minecraft:teleport": {
+				"random_teleports": true,
+				"max_random_teleport_time": 5000,
+				"random_teleport_cube": [10, 200, 10],
+				"target_distance": 100,
+				"target_teleport_chance": 0.5,
+				"light_teleport_chance": 0.05
+			}
+			
+		},
+		"events": {
+			"minewars:buffhelp": {
+				"add": { "component_groups":[ "minewars:buff", "minewars:buff2"]}
+			}
+		}
+		
+	}
+}

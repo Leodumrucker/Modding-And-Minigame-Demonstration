@@ -1,0 +1,149 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "dungeoneer:pigman_swordsman",
+			"is_spawnable": true,
+			"is_summonable": true,
+			"is_experimental": false
+		},
+		"component_groups": {
+			
+		},
+		"components": {
+			"minecraft:breathable": {
+				"total_supply": 15,
+				"suffocate_time": 0,
+				"breathes_water": false
+			},
+			
+			
+			"minecraft:collision_box": {
+				"width": 0.6,
+				"height": 1.9
+			},
+			"minecraft:follow_range":{
+				"value":50
+			},
+			"minecraft:behavior.avoid_mob_type": {
+				"priority": 600,
+				"entity_types": [
+					{
+					"filters": {
+						"test": "is_family",
+						"subject": "other",
+						"value": "bomb"
+					},
+					"max_dist": 30,
+					"walk_speed_multiplier": 1.2,
+					"sprint_speed_multiplier": 1.5
+					}
+				]
+			},
+			"minecraft:behavior.nearest_attackable_target": {
+				"priority": 26,
+				"entity_types": [
+					{
+						"filters": {
+							"test": "is_family",
+							"subject": "other",
+							"value": "player"
+						},
+						"max_dist": 100
+					},
+					{
+						"filters": {
+							"test": "is_family",
+							"subject": "other",
+							"value": "villager"
+						},
+						"max_dist": 100
+					},
+					{
+						"filters": {
+							"test": "is_family",
+							"subject": "other",
+							"value": "warden"
+						},
+						"max_dist": 100
+					},
+					{
+						"filters": {
+							"test": "is_family",
+							"subject": "other",
+							"value": "irongolem"
+						},
+						"max_dist": 100
+					}
+				],
+				"must_see": true
+			},
+			"minecraft:nameable": {},
+			"minecraft:navigation.walk": {
+				"is_amphibious": true,
+				"can_pass_doors": true,
+				"can_open_doors": true,
+				"avoid_water": true,
+				"avoid_portals": false
+			},
+			"minecraft:movement.basic": {},
+			"minecraft:jump.static": {},
+			"minecraft:can_climb": {},
+			
+			"minecraft:type_family": {
+				"family": ["pigman_swordsman", "pigman", "monster", "mob"]
+			},
+			"minecraft:loot": {
+				"table": "loot_tables/entities/pigman_swordsman.json"
+			},
+			"minecraft:equipment": {
+				"table": "loot_tables/equipment/swordsman_gear.json"
+			},
+			"minecraft:health": {
+				"value": 25,
+				"max": 25
+			},
+			"minecraft:movement": {
+				"value": 0.23
+			},
+			"minecraft:attack": {
+				"damage": 1
+			},
+			"minecraft:despawn": {
+				"despawn_from_distance": {}
+			},
+			"minecraft:behavior.hurt_by_target": {
+				"priority": 1,
+				"entity_types": {
+					"filters": {
+						"test": "is_family",
+						"subject": "other",
+						"operator": "!=",
+						"value": "pigman"
+					},
+					"max_dist": 64
+				}
+			},
+			
+			
+			"minecraft:behavior.melee_attack": {
+				"priority": 15,
+				"speed_multiplier": 1.1
+			},
+			
+			
+			
+			
+			
+			
+			"minecraft:physics": {},
+			"minecraft:pushable": {
+				"is_pushable": true,
+				"is_pushable_by_piston": true
+			},
+			"minecraft:conditional_bandwidth_optimization": {}
+		},
+		"events": {
+		}
+	}
+}

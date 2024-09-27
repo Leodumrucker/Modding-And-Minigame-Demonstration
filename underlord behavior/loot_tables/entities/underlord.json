@@ -1,0 +1,134 @@
+{
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "item",
+					"name": "netherite_helmet",
+					"weight": 1,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							}
+						},
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 30,
+								"max": 509
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "item",
+					"name": "netherite_chestplate",
+					"weight": 1,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							}
+						},
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 30,
+								"max": 509
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "item",
+					"name": "netherite_leggings",
+					"weight": 1,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							}
+						},
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 30,
+								"max": 509
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "item",
+					"name": "netherite_boots",
+					"weight": 1,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							}
+						},
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 30,
+								"max": 509
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "item",
+					"name": "brown_shulker_box",
+					"weight": 1,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": 1
+						},
+						
+						{
+							"function": "fill_container",
+							"loot_table": "loot_tables/bossloot/underlord.json"
+						}
+      
+					]
+				}
+			]
+		}
+	]
+}

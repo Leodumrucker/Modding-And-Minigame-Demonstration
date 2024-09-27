@@ -1,0 +1,69 @@
+{
+	"format_version": "1.19.0",
+	"animation_controllers": {
+		"controller.animation.underlord.move": {
+			"states": {
+				"default": {
+					"animations": ["idle"],
+					"sound_effects": [
+						{"effect": "colossalgrowl48221.mp3"}
+					],
+					"transitions": [
+						{"walking": "query.is_moving"},
+						{"in air": "query.is_jumping"},
+						{"roar": "query.is_roaring"},
+						{"attack": "variable.attack_time > 0"}
+					]
+				},
+				"walking": {
+					"animations": ["move"],
+					"sound_effects": [
+						{"effect": "giantwalking149155.mp3"}
+					],
+					"transitions": [
+						{"in air": "query.is_jumping"},
+						{"default": "!query.is_moving"}
+					]
+				},
+				"in air": {
+					"animations": ["jump"],
+					"sound_effects": [
+						{"effect": "largemonsterattack195713.mp3"}
+					],
+					"transitions": [
+						{"default": "!query.is_jumping"}
+					],
+					"blend_via_shortest_path": true
+				},
+				"roar": {
+					"animations": ["roar"],
+					"sound_effects": [
+						{"effect": "monsterlaugh103278.mp3"}
+					],
+					"transitions": [
+						{"default": "!query.is_roaring"}
+					]
+				},
+				"attack": {
+					"animations": ["attack"],
+					"sound_effects": [
+						{"effect": "drawsword144724.mp3"}
+					],
+					"transitions": [
+						{"default": "variable.attack_time == 0"}
+					]
+				},
+				"hit": {
+					"animations": ["hit"],
+					"sound_effects": [
+						{"effect": "largemonsterattack195713.mp3"}
+					],
+					"transitions": [
+						{"default": ""}
+					],
+					"blend_via_shortest_path": true
+				}
+			}
+		}
+	}
+}
